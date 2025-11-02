@@ -1,26 +1,36 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AppProvider } from './context/AppContext';
+import React, { useContext } from 'react';
+import { View } from 'react-native';
+import globalStyles from './styles/globalStyles';
 
-import HomeScreen from './screens/HomeScreen';
-import VoteScreen from './screens/VoteScreen';
-import ResultScreen from './screens/ResultScreen';
-import StatsScreen from './screens/StatsScreen';
+import { UserProvider, UserContext } from './context/UserContext';
+import useTournament from './hooks/useTournaments';
+import movies from './data/movies.json';
+import UserInput from './components/UserInput';
+import Matchup from './components/Matchup';
+import ResultsScreen from './components/ResultsScreen';
 
-const Stack = createNativeStackNavigator();
+function MainApp() {
+  const { username } = useContext(UserContext);
+  const { currentPair, winners, handleVote, restartTournament, isFinished } = useTournament(movies);
+
+  // dacă nu există username, arată input-ul
+  if (!username) return <UserInput />;
+
+  return (
+    <View style={globalStyles.container}>
+      {!isFinished ? (
+        <Matchup pair={currentPair} onVote={handleVote} />
+      ) : (
+        <ResultsScreen winners={winners} onRestart={restartTournament} />
+      )}
+    </View>
+  );
+}
 
 export default function App() {
   return (
-    <AppProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Vote" component={VoteScreen} />
-          <Stack.Screen name="Result" component={ResultScreen} />
-          <Stack.Screen name="History" component={StatsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AppProvider>
+    <UserProvider>
+      <MainApp />
+    </UserProvider>
   );
 }

@@ -1,7 +1,6 @@
 export const imageMap = {
-  'img1.png': require('../assets/mustangs/img1.png'),
-  'img2.png': require('../assets/mustangs/img2.png'),
-  'img3.png': require('../assets/mustangs/img3.png'),
-  'img4.png': require('../assets/mustangs/img4.png'),
-  'img5.png': require('../assets/mustangs/img5.png')
+  'Prideandprejudiceposter.jpg': require('../assets/movies/Prideandprejudiceposter.jpg'),
+  'Jane_Eyre_Poster.jpg': require('../assets/movies/Jane_Eyre_Poster.jpg'),
+  'Callmebyyourname.jpg': require('../assets/movies/Callmebyyourname.jpg'),
+  'Atonement.jpg': require('../assets/movies/Atonement.jpg'),
 };

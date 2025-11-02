@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "title": "Pride and Prejudice",
+    "description": "Un clasic al romantismului bazat pe romanul lui Jane Austen, cu Keira Knightley în rolul lui Elizabeth Bennet.",
+    "image": "Prideandprejudiceposter.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Jane Eyre",
+    "description": "Ecranizarea intensă a romanului gotic al lui Charlotte Brontë, cu Mia Wasikowska și Michael Fassbender.",
+    "image": "Jane_Eyre_Poster.jpg"
+  },
+  {
+    "id": "3",
+    "title": "Call Me by Your Name",
+    "description": "O poveste poetică despre iubirea de vară dintre Elio și Oliver, în Italia anilor ’80.",
+    "image": "Callmebyyourname.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Atonement",
+    "description": "O dramă romantică despre vină, iubire și pierdere, bazată pe romanul lui Ian McEwan.",
+    "image": "Atonement.jpg"
+  }
+]
