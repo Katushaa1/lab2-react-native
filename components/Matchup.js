@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MovieCard from './MovieCard';
 
 export default function Matchup({ pair, onVote }) {
-  if (!pair || pair.length < 2) return null;
+  // useEffect- Dacă există doar un film (bye automat), îl votează automat
+  useEffect(() => {
+    if (pair && pair.length === 1) {
+      onVote(pair[0]);
+    }
+  }, [pair]);
+
+  if (!pair || pair.length === 0) return null;
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Alege filmul preferat 🎥</Text>
       <View style={styles.row}>
-        <MovieCard movie={pair[0]} onSelect={onVote} />
-        <MovieCard movie={pair[1]} onSelect={onVote} />
+        {pair.map((movie) => (   
+          //map- pentru ca sa fie flexibil la 1 sau 2 filme
+
+          <MovieCard key={movie.id} movie={movie} onSelect={onVote} />
+        ))}
       </View>
     </View>
   );

@@ -11,6 +11,8 @@ import ResultsScreen from './components/ResultsScreen';
 
 function MainApp() {
   const { username } = useContext(UserContext);
+
+  // 🔹 Folosim hook-ul direct la top-level
   const { currentPair, winners, handleVote, restartTournament, isFinished } = useTournament(movies);
 
   // dacă nu există username, arată input-ul

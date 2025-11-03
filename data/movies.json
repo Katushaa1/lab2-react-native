@@ -22,5 +22,53 @@
     "title": "Atonement",
     "description": "O dramă romantică despre vină, iubire și pierdere, bazată pe romanul lui Ian McEwan.",
     "image": "Atonement.jpg"
+  },
+  {
+    "id": "5",
+    "title": "Eternal Sunshine of the Spotless Mind",
+    "description": "O poveste despre iubire, memorie și șansele de a începe din nou, cu Jim Carrey și Kate Winslet.",
+    "image": "Eternal_sunshine_of_the_spotless_mind.jpg"
+  },
+  {
+    "id": "6",
+    "title": "Guardians of the Galaxy",
+    "description": "O aventură SF plină de acțiune și umor cu o echipă neobișnuită de eroi intergalactici.",
+    "image": "Guardians_of_the_galaxy.jpg"
+  },
+  {
+    "id": "7",
+    "title": "I Am Alive",
+    "description": "O dramă inspirațională despre supraviețuire și descoperirea propriei puteri interioare.",
+    "image": "I_am_alive.jpg"
+  },
+  {
+    "id": "8",
+    "title": "I Origins",
+    "description": "Un film despre știință, spiritualitate și conexiunile neașteptate dintre oameni.",
+    "image": "I_Origin.jpg"
+  },
+  {
+    "id": "9",
+    "title": "Serendipity",
+    "description": "O comedie romantică despre coincidențe și dragoste predestinată.",
+    "image": "Serendipity.jpg"
+  },
+  {
+    "id": "10",
+    "title": "The Imitation Game",
+    "description": "Povestea lui Alan Turing și a echipei care a spart codul Enigma în timpul celui de-al Doilea Război Mondial.",
+    "image": "the_imitation_game.jpg"
+  },
+  {
+    "id": "11",
+    "title": "The Best of Me",
+    "description": "O dramă romantică despre iubire, pierdere și regăsire a sentimentelor din tinerețe.",
+    "image": "thebestofme.jpg"
+  },
+  {
+    "id": "12",
+    "title": "Unforgiven",
+    "description": "Un western clasic despre dreptate, vină și violență într-un sat din Vestul Sălbatic.",
+    "image": "Unforgiven.jpg"
   }
 ]

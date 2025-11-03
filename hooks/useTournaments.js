@@ -3,20 +3,29 @@ import { UserContext } from '../context/UserContext';
 import { saveUserData } from '../utils/storage';
 
 export default function useTournament(items) {
-  const [roundPairs, setRoundPairs] = useState([]); // lista de perechi din runda curentă
-  const [currentPairIndex, setCurrentPairIndex] = useState(0); // indexul perechii curente
-  const [winners, setWinners] = useState([]); // câștigători până acum
+  const [roundPairs, setRoundPairs] = useState([]); // lista perechilor curente
+  const [currentPairIndex, setCurrentPairIndex] = useState(0);
+  const [winners, setWinners] = useState([]); // câștigători din roundul curent
   const [isFinished, setIsFinished] = useState(false);
 
   const { username, history, setHistory } = useContext(UserContext);
 
+  // Funcție pentru a genera perechi dintr-un array
+  const generatePairs = (arr) => {
+    const pairs = [];
+    for (let i = 0; i < arr.length; i += 2) {
+      if (i + 1 < arr.length) {
+        pairs.push(arr.slice(i, i + 2)); // două filme
+      } else {
+        pairs.push([arr[i]]); // bye automat
+      }
+    }
+    return pairs;
+  };
+
   // La început: creăm perechile rundei inițiale
   useEffect(() => {
-    const initialPairs = [];
-    for (let i = 0; i < items.length; i += 2) {
-      initialPairs.push(items.slice(i, i + 2));
-    }
-    setRoundPairs(initialPairs);
+    setRoundPairs(generatePairs(items));
   }, [items]);
 
   const handleVote = async (winner) => {
@@ -29,9 +38,9 @@ export default function useTournament(items) {
     if (nextPairIndex < roundPairs.length) {
       setCurrentPairIndex(nextPairIndex);
     } else {
-      // runda curentă s-a terminat
+      // runda s-a terminat
       if (nextWinners.length === 1) {
-        // avem câștigător final
+        // câștigător final
         setIsFinished(true);
         const newHistory = [
           ...history,
@@ -41,13 +50,17 @@ export default function useTournament(items) {
         await saveUserData({ username, history: newHistory });
       } else {
         // construim runda următoare
-        const newPairs = [];
-        for (let i = 0; i < nextWinners.length; i += 2) {
-          newPairs.push(nextWinners.slice(i, i + 2));
+        const newPairs = generatePairs(nextWinners);
+
+        // dacă există o pereche cu un singur film, îl promovăm automat
+        if (newPairs.length === 1 && newPairs[0].length === 1) {
+          handleVote(newPairs[0][0]);
+          return;
         }
+
         setRoundPairs(newPairs);
         setCurrentPairIndex(0);
-        setWinners([]); // resetăm câștigătorii pentru noua rundă
+        setWinners([]);
       }
     }
   };
@@ -56,12 +69,7 @@ export default function useTournament(items) {
     setCurrentPairIndex(0);
     setWinners([]);
     setIsFinished(false);
-
-    const initialPairs = [];
-    for (let i = 0; i < items.length; i += 2) {
-      initialPairs.push(items.slice(i, i + 2));
-    }
-    setRoundPairs(initialPairs);
+    setRoundPairs(generatePairs(items));
   };
 
   const currentPair = roundPairs[currentPairIndex] || [];
